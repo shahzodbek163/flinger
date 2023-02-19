@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class TextFieldIcon extends StatelessWidget {
   final bool isEmail;
   final bool isPassword;
+  final bool isSecond;
   final Widget first;
   final Widget second;
   const TextFieldIcon({
     super.key,
     required this.isEmail,
     required this.isPassword,
+    this.isSecond = false,
     required this.first,
     required this.second,
   });
@@ -33,7 +32,9 @@ class TextFieldIcon extends StatelessWidget {
           ),
         ),
         Positioned(left: 1, bottom: 5, child: first),
-        Positioned(right: 1, bottom: 5, child: second)
+        Visibility(
+            visible: isSecond ? true : false,
+            child: Positioned(right: 1, bottom: 5, child: second))
       ],
     );
   }
