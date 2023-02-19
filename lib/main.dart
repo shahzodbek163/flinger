@@ -1,9 +1,9 @@
-import 'package:flinger/simple.dart';
+import 'package:flinger/screens/first_screen.dart';
 import 'package:flutter/material.dart';
 
 void main(List<String> args) {
   runApp(const MaterialApp(
-    home: Simple(),
+    home: FirstScreen(),
     debugShowCheckedModeBanner: false,
   ));
 } 
