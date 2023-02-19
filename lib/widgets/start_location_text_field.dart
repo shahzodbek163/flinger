@@ -3,9 +3,14 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class StartLocationTextField extends StatelessWidget {
+class StartLocationTextField extends StatefulWidget {
   const StartLocationTextField({super.key});
 
+  @override
+  State<StartLocationTextField> createState() => _StartLocationTextFieldState();
+}
+
+class _StartLocationTextFieldState extends State<StartLocationTextField> {
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -112,32 +117,37 @@ class StartLocationTextField extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 5),
       child: Column(
         children: [
-          Row(
-            children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(20),
-                child: Image.asset(
-                  photo,
-                  height: 25,
-                  width: 25,
+          GestureDetector(
+            onTap: () {
+              
+            },
+            child: Row(
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(20),
+                  child: Image.asset(
+                    photo,
+                    height: 25,
+                    width: 25,
+                  ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 5),
-                child: Text(
-                  comName,
-                  style: GoogleFonts.shareTechMono(),
+                Padding(
+                  padding: const EdgeInsets.only(left: 5),
+                  child: Text(
+                    comName,
+                    style: GoogleFonts.shareTechMono(),
+                  ),
                 ),
-              ),
-              const Spacer(),
-              Padding(
-                padding: const EdgeInsets.only(left: 10),
-                child: Text(
-                  phone,
-                  style: GoogleFonts.shareTechMono(),
+                const Spacer(),
+                Padding(
+                  padding: const EdgeInsets.only(left: 10),
+                  child: Text(
+                    phone,
+                    style: GoogleFonts.shareTechMono(),
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
           const Divider(
             color: Colors.black,

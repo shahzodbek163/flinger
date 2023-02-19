@@ -24,11 +24,14 @@ class FirstScreen extends StatelessWidget {
             "Please enter your phone number",
             style: GoogleFonts.montserrat(),
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
-          const TextFieldRed(suffix: StartLocationTextField()),
-          SizedBox(
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 50),
+            child: TextFieldRed(suffix: StartLocationTextField()),
+          ),
+          const SizedBox(
             height: 30,
           ),
           RedButton(

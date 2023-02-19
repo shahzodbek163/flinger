@@ -1,4 +1,3 @@
-import 'package:flinger/classes/send_open_company.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
@@ -12,8 +11,6 @@ class TextFieldRed extends StatefulWidget {
 }
 
 class _TextFieldRedState extends State<TextFieldRed> {
-  final sendOpenCompany = SendOpenCompany();
-
   @override
   Widget build(BuildContext context) {
     return Stack(
