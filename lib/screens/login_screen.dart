@@ -55,6 +55,12 @@ class LoginScreen extends StatelessWidget {
                   fontWeight: FontWeight.w500),
               textAlign: TextAlign.center,
             ),
+            const TextFieldIcon(
+              first: Icon(Icons.lock_person_rounded),
+              isEmail: false,
+              isPassword: true,
+              second: Icon(Icons.remove_red_eye),
+            ),
           ],
         ),
       ),

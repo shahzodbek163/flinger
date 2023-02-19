@@ -35,6 +35,7 @@ class FirstScreen extends StatelessWidget {
             height: 30,
           ),
           RedButton(
+            onTap: () {},
             color: Constants.redButtonColor,
             shadowColor: Constants.redButtonShadow,
             textColor: Constants.redButtonTextColor,
