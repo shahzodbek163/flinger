@@ -1,4 +1,5 @@
 import 'package:flinger/widgets/start_location_text_field.dart';
+import 'package:flinger/widgets/text_field_icon.dart';
 import 'package:flinger/widgets/text_field_red.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -34,6 +35,9 @@ class LoginScreen extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
             ),
+            const SizedBox(
+              height: 40,
+            ),
             Text(
               "Phone number",
               style: GoogleFonts.ubuntu(
@@ -51,7 +55,6 @@ class LoginScreen extends StatelessWidget {
                   fontWeight: FontWeight.w500),
               textAlign: TextAlign.center,
             ),
-            const TextFieldRed(suffix: Icon(Icons.lock)),
           ],
         ),
       ),
