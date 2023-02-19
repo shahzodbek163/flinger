@@ -56,7 +56,7 @@ class StartLocationTextField extends StatelessWidget {
                               photo: "assets/ucell.png",
                               comName: "Ucell",
                               phone: "+99894"),
-                              companyContainer(
+                          companyContainer(
                               photo: "assets/mobiuz.png",
                               comName: "Mobiuz",
                               phone: "+99897"),

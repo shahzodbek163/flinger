@@ -40,6 +40,7 @@ dependencies:
   drop_shadow: ^0.0.2+1
   flutter_multi_formatter: ^2.10.2
 
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
