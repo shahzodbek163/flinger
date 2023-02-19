@@ -9,22 +9,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.10.0"
-  base58check:
+  blur:
     dependency: transitive
     description:
-      name: base58check
-      sha256: "6c300dfc33e598d2fe26319e13f6243fea81eaf8204cb4c6b69ef20a625319a5"
+      name: blur
+      sha256: fd23f1247faee4a7d1a3efb6b7c3cea134f3b939d72e5f8d45233deb0776259f
       url: "https://pub.dev"
     source: hosted
-    version: "2.0.0"
-  bech32:
-    dependency: transitive
-    description:
-      name: bech32
-      sha256: "156cbace936f7720c79a79d16a03efad343b1ef17106716e04b8b8e39f99f7f7"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.2.2"
+    version: "3.1.0"
   boolean_selector:
     dependency: transitive
     description:
@@ -81,6 +73,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.5"
+  drop_shadow:
+    dependency: "direct main"
+    description:
+      name: drop_shadow
+      sha256: "97778284594130857cc9112ea2e5b140e7242f54d696676bcee37d2cf9af6584"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.2+1"
   fake_async:
     dependency: transitive
     description:
@@ -275,6 +275,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.2.4"
+  shadow:
+    dependency: "direct main"
+    description:
+      name: shadow
+      sha256: a1a8d091f198c2632b643443e573f27d5852b7a5d7ba754f7674216a595b6271
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.5.0"
   sky_engine:
     dependency: transitive
     description: flutter

@@ -4,35 +4,38 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class RedButton extends StatelessWidget {
-  const RedButton({super.key});
+  final Color color;
+  final Color shadowColor;
+  final Color textColor;
+  final String buttonText;
+  const RedButton(
+      {super.key,
+      required this.color,
+      required this.shadowColor,
+      required this.textColor,
+      required this.buttonText});
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 30),
-      child: Container(
-        height: 45,
-        width: 230,
-        alignment: Alignment.center,
-        decoration: BoxDecoration(
-            color: const Color(0xFFff0008),
-            boxShadow: const [
-              BoxShadow(
-                  color: Color.fromARGB(255, 255, 88, 94),
-                  spreadRadius: 1,
-                  blurRadius: 30,
-                  blurStyle: BlurStyle.normal,
-
-                  offset: Offset(0, 9)
-                  
-                  )
-            ],
-            borderRadius: BorderRadius.circular(30)),
-        child: Text(
-          "SEND",
-          style: GoogleFonts.montserrat(
-              color: Colors.white, fontWeight: FontWeight.bold),
-        ),
+    return Container(
+      height: 45,
+      width: 230,
+      alignment: Alignment.center,
+      decoration: BoxDecoration(
+          color: color,
+          boxShadow: [
+            BoxShadow(
+                color: shadowColor,
+                spreadRadius: 1,
+                blurRadius: 30,
+                blurStyle: BlurStyle.normal,
+                offset: Offset(0, 9))
+          ],
+          borderRadius: BorderRadius.circular(30)),
+      child: Text(
+        buttonText,
+        style: GoogleFonts.montserrat(
+            color: textColor, fontWeight: FontWeight.bold),
       ),
     );
   }

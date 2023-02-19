@@ -1,8 +1,7 @@
+import 'package:flinger/resource/constants.dart';
 import 'package:flinger/widgets/red_button.dart';
 import 'package:flinger/widgets/text_field_red.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class FirstScreen extends StatelessWidget {
@@ -25,7 +24,12 @@ class FirstScreen extends StatelessWidget {
             style: GoogleFonts.montserrat(),
           ),
           const TextFieldRed(),
-          const RedButton(),
+          RedButton(
+            color: Constants.redButtonColor,
+            shadowColor: Constants.redButtonShadow,
+            textColor: Constants.redButtonTextColor,
+            buttonText: "SEND",
+          ),
         ],
       )),
     );
