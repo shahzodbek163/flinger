@@ -27,7 +27,7 @@ class TextFieldIcon extends StatelessWidget {
           keyboardType: isEmail ? TextInputType.emailAddress : null,
           obscureText: isPassword,
           decoration: const InputDecoration(
-            contentPadding: EdgeInsets.only(top: 17, left: 36),
+            contentPadding: EdgeInsets.only(top: 17, left: 36, right: 36),
             focusedBorder: UnderlineInputBorder(
                 borderSide: BorderSide(color: Color(0xFFff0008), width: 2)),
           ),

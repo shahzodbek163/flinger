@@ -1,4 +1,5 @@
 import 'package:flinger/resource/constants.dart';
+import 'package:flinger/widgets/red_button.dart';
 import 'package:flinger/widgets/start_location_text_field.dart';
 import 'package:flinger/widgets/text_field_icon.dart';
 import 'package:flinger/widgets/text_field_red.dart';
@@ -58,18 +59,33 @@ class LoginScreen extends StatelessWidget {
             ),
             const TextFieldIcon(
                 isEmail: false,
-                isPassword: false,
+                isPassword: true,
                 first: Icon(Icons.lock),
                 second: Icon(Icons.remove_red_eye)),
-            TextFieldIcon(
-              first: const Icon(Icons.lock_person_rounded),
-              isEmail: false,
-              isPassword: true,
-              second: Icon(
-                Icons.remove_red_eye,
-                color: Constants.redButtonColor,
+            SizedBox(
+              height: 40,
+            ),
+            Center(
+              child: Text(
+                "Forgot password?",
+                style: GoogleFonts.ubuntu(
+                    color: Colors.grey,
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold),
+                textAlign: TextAlign.center,
               ),
             ),
+            const SizedBox(
+              height: 360,
+            ),
+            Center(
+              child: RedButton(
+                  color: Constants.redButtonColor,
+                  shadowColor: Constants.redButtonShadow,
+                  textColor: Constants.redButtonTextColor,
+                  buttonText: "Login",
+                  onTap: () {}),
+            )
           ],
         ),
       ),
