@@ -35,6 +35,9 @@ class LoginScreen extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
             ),
+            const SizedBox(
+              height: 40,
+            ),
             Text(
               "Phone number",
               style: GoogleFonts.ubuntu(
@@ -53,10 +56,11 @@ class LoginScreen extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
             const TextFieldIcon(
-                isEmail: false,
-                isPassword: false,
-                first: Icon(Icons.lock),
-                second: Icon(Icons.remove_red_eye))
+              first: Icon(Icons.lock_person_rounded),
+              isEmail: false,
+              isPassword: true,
+              second: Icon(Icons.remove_red_eye),
+            ),
           ],
         ),
       ),
