@@ -12,16 +12,10 @@ class SplashScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color(0xffff0008),
       body: Center(
-        child: DropShadow(
-          spread: 2,
-          blurRadius: 20,
-          borderRadius: 20,
-          opacity: 0.5,
-          child: Image.asset(
-            "assets/logo.png",
-            height: 100,
-            width: 100,
-          ),
+        child: Image.asset(
+          "assets/logo.png",
+          height: 100,
+          width: 100,
         ),
       ),
     );
