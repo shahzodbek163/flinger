@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 
 void main(List<String> args) {
   runApp(const MaterialApp(
-    home: WellcomeScreen(),
+    home: FirstScreen(),
     debugShowCheckedModeBanner: false,
   ));
 }
