@@ -9,7 +9,7 @@ class RedButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 50),
+      padding: const EdgeInsets.only(top: 30),
       child: Container(
         height: 45,
         width: 230,
