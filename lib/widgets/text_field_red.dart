@@ -18,11 +18,12 @@ class _TextFieldRedState extends State<TextFieldRed> {
         TextField(
           cursorColor: const Color(0xFFff0008),
           maxLength: 9,
+          cursorHeight: 16,
           keyboardType: TextInputType.phone,
           style: GoogleFonts.shareTechMono(fontSize: 16),
           inputFormatters: [MaskedInputFormatter("### ## ##")],
           decoration: const InputDecoration(
-            contentPadding: EdgeInsets.only(top: 17, left: 110),
+            contentPadding: EdgeInsets.only(left: 110, top: 15),
             focusedBorder: UnderlineInputBorder(
                 borderSide: BorderSide(color: Color(0xFFff0008), width: 2)),
           ),

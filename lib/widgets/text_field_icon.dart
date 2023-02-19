@@ -25,6 +25,7 @@ class TextFieldIcon extends StatelessWidget {
           cursorColor: const Color(0xFFff0008),
           style: GoogleFonts.shareTechMono(fontSize: 16),
           keyboardType: isEmail ? TextInputType.emailAddress : null,
+          obscureText: isPassword,
           decoration: const InputDecoration(
             contentPadding: EdgeInsets.only(top: 17, left: 30),
             focusedBorder: UnderlineInputBorder(
