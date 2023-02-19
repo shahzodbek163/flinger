@@ -7,6 +7,7 @@ class TextFieldIcon extends StatelessWidget {
   final bool isSecond;
   final Widget first;
   final Widget second;
+  final double topPadding;
   const TextFieldIcon({
     super.key,
     required this.isEmail,
@@ -14,28 +15,32 @@ class TextFieldIcon extends StatelessWidget {
     this.isSecond = false,
     required this.first,
     required this.second,
+     this.topPadding = 17,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        TextField(
-          cursorColor: const Color(0xFFff0008),
-          style: GoogleFonts.shareTechMono(fontSize: 16),
-          keyboardType: isEmail ? TextInputType.emailAddress : null,
-          obscureText: isPassword,
-          decoration: const InputDecoration(
-            contentPadding: EdgeInsets.only(top: 17, left: 36, right: 36),
-            focusedBorder: UnderlineInputBorder(
-                borderSide: BorderSide(color: Color(0xFFff0008), width: 2)),
+    return SizedBox(
+      height: 36,
+      child: Stack(
+        children: [
+          TextField(
+            cursorColor: const Color(0xFFff0008),
+            style: GoogleFonts.shareTechMono(fontSize: 16),
+            keyboardType: isEmail ? TextInputType.emailAddress : null,
+            obscureText: isPassword,
+            decoration:  InputDecoration(
+              contentPadding: EdgeInsets.only(top: topPadding, left: 36, right: 36, bottom: topPadding == 17 ? 0 : 10),
+              focusedBorder: const UnderlineInputBorder(
+                  borderSide: BorderSide(color: Color(0xFFff0008), width: 2)),
+            ),
           ),
-        ),
-        Positioned(left: 1, bottom: 5, child: first),
-        Visibility(
-            visible: isSecond ? true : false,
-            child: Positioned(right: 1, bottom: 5, child: second))
-      ],
+          Positioned(left: 1, bottom: 5, child: first),
+          Visibility(
+              visible: isSecond ? true : false,
+              child: Positioned(right: 1, bottom: 5, child: second))
+        ],
+      ),
     );
   }
 }
