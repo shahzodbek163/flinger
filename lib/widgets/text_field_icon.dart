@@ -25,17 +25,14 @@ class TextFieldIcon extends StatelessWidget {
           cursorColor: const Color(0xFFff0008),
           style: GoogleFonts.shareTechMono(fontSize: 16),
           keyboardType: isEmail ? TextInputType.emailAddress : null,
-          decoration: InputDecoration(
-            prefix: isPassword
-                ? const Icon(Icons.remove_red_eye)
-                : const Visibility(child: Icon(Icons.check)),
-            contentPadding: const EdgeInsets.only(top: 17, left: 110),
-            focusedBorder: const UnderlineInputBorder(
+          decoration: const InputDecoration(
+            contentPadding: EdgeInsets.only(top: 17, left: 30),
+            focusedBorder: UnderlineInputBorder(
                 borderSide: BorderSide(color: Color(0xFFff0008), width: 2)),
           ),
         ),
-        first,
-        second
+        Positioned(left: 1, bottom: 5, child: first),
+        Positioned(right: 1, bottom: 5, child: second)
       ],
     );
   }
