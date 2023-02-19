@@ -1,5 +1,6 @@
 import 'package:flinger/resource/constants.dart';
 import 'package:flinger/screens/login_screen.dart';
+import 'package:flinger/screens/register_screen.dart';
 import 'package:flinger/widgets/red_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -63,10 +64,20 @@ class WellcomeScreen extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
-          Text(
-            "GET REGISTERED",
-            style: GoogleFonts.montserrat(
-                fontSize: 16, color: Colors.white, fontWeight: FontWeight.w500),
+          InkWell(
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const RegisterScreen()));
+            },
+            child: Text(
+              "GET REGISTERED",
+              style: GoogleFonts.montserrat(
+                  fontSize: 16,
+                  color: Colors.white,
+                  fontWeight: FontWeight.w500),
+            ),
           ),
         ],
       ),
