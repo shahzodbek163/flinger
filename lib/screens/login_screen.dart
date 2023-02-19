@@ -1,3 +1,4 @@
+import 'package:flinger/resource/constants.dart';
 import 'package:flinger/widgets/start_location_text_field.dart';
 import 'package:flinger/widgets/text_field_icon.dart';
 import 'package:flinger/widgets/text_field_red.dart';
@@ -56,10 +57,18 @@ class LoginScreen extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
             const TextFieldIcon(
-              first: Icon(Icons.lock_person_rounded),
+                isEmail: false,
+                isPassword: false,
+                first: Icon(Icons.lock),
+                second: Icon(Icons.remove_red_eye)),
+            TextFieldIcon(
+              first: const Icon(Icons.lock_person_rounded),
               isEmail: false,
               isPassword: true,
-              second: Icon(Icons.remove_red_eye),
+              second: Icon(
+                Icons.remove_red_eye,
+                color: Constants.redButtonColor,
+              ),
             ),
           ],
         ),
