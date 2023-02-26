@@ -12,6 +12,7 @@ class WellcomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xffff0008),
+      resizeToAvoidBottomInset: false,
       body: Padding(
         padding: const EdgeInsets.only(top: 90),
         child: Column(

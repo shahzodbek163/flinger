@@ -78,6 +78,7 @@ class LoginScreen extends StatelessWidget {
         ),
         Text(
           "Phone number",
+          
           style: GoogleFonts.ubuntu(
               color: Colors.black38, fontSize: 14, fontWeight: FontWeight.w500),
           textAlign: TextAlign.center,

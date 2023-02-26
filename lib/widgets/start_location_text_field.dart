@@ -1,5 +1,10 @@
+import 'dart:developer';
+
+import 'package:flinger/blocs/bloc_set_code.dart';
+import 'package:flinger/widgets/company_code.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class StartLocationTextField extends StatefulWidget {
   const StartLocationTextField({super.key});
@@ -11,88 +16,54 @@ class StartLocationTextField extends StatefulWidget {
 class _StartLocationTextFieldState extends State<StartLocationTextField> {
   @override
   Widget build(BuildContext context) {
+    final providerBlocSetCode = Provider.of<BlocSetCode>(context);
+
     return Row(
       children: [
-        Image.asset(
-          "assets/sdsd.png",
-          height: 18,
-          width: 18,
-        ),
+        StreamBuilder<Image>(
+            initialData: Image.asset(
+              "assets/beeline.png",
+              height: 20,
+              width: 20,
+            ),
+            stream: providerBlocSetCode.dataPhotoStream,
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return ClipRRect(
+                    borderRadius: BorderRadius.circular(20),
+                    child: snapshot.data!);
+              } else {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
+            }),
         InkWell(
           onTap: () {
             showDialog(
               context: context,
               builder: (context) {
-                return Padding(
-                  padding: const EdgeInsets.only(
-                      top: 250, bottom: 250, left: 50, right: 50),
-                  child: Container(
-                    height: 200,
-                    width: 200,
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(30)),
-                    child: Padding(
-                      padding: const EdgeInsets.all(10),
-                      child: ListView(
-                        physics: const BouncingScrollPhysics(),
-                        children: [
-                          companyContainer(),
-                          companyContainer(phone: "+99891"),
-                          companyContainer(
-                              photo: "assets/unnamed.png",
-                              comName: "Uzmobile",
-                              phone: "+99877"),
-                          companyContainer(
-                              photo: "assets/unnamed.png",
-                              comName: "Uzmobile",
-                              phone: "+99899"),
-                          companyContainer(
-                              photo: "assets/unnamed.png",
-                              comName: "Uzmobile",
-                              phone: "+99899"),
-                          companyContainer(
-                              photo: "assets/ucell.png",
-                              comName: "Ucell",
-                              phone: "+99893"),
-                          companyContainer(
-                              photo: "assets/ucell.png",
-                              comName: "Ucell",
-                              phone: "+99894"),
-                          companyContainer(
-                              photo: "assets/mobiuz.png",
-                              comName: "Mobiuz",
-                              phone: "+99897"),
-                          companyContainer(
-                              photo: "assets/mobiuz.png",
-                              comName: "Mobiuz",
-                              phone: "+998977"),
-                          companyContainer(
-                              photo: "assets/mobiuz.png",
-                              comName: "Mobiuz",
-                              phone: "+99878"),
-                          companyContainer(
-                              photo: "assets/humans.png",
-                              comName: "Humans",
-                              phone: "+99833"),
-                          companyContainer(
-                              photo: "assets/humans.png",
-                              comName: "Humans",
-                              phone: "+99866"),
-                        ],
-                      ),
-                    ),
-                  ),
-                );
+                return CompanyCode();
               },
             );
           },
           child: Padding(
             padding: const EdgeInsets.only(left: 5),
-            child: Text(
-              "+99890",
-              style: GoogleFonts.shareTechMono(fontSize: 16),
-            ),
+            child: StreamBuilder<String>(
+                initialData: "+99890",
+                stream: providerBlocSetCode.dataStream,
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    return Text(
+                      snapshot.data!,
+                      style: GoogleFonts.shareTechMono(fontSize: 16),
+                    );
+                  } else {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+                }),
           ),
         ),
         Padding(
@@ -104,54 +75,6 @@ class _StartLocationTextFieldState extends State<StartLocationTextField> {
           ),
         ),
       ],
-    );
-  }
-
-  Widget companyContainer(
-      {String photo = "assets/sdsd.png",
-      String comName = "Beeline",
-      String phone = "+99890"}) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 5),
-      child: Column(
-        children: [
-          GestureDetector(
-            onTap: () {
-              
-            },
-            child: Row(
-              children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(20),
-                  child: Image.asset(
-                    photo,
-                    height: 25,
-                    width: 25,
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 5),
-                  child: Text(
-                    comName,
-                    style: GoogleFonts.shareTechMono(),
-                  ),
-                ),
-                const Spacer(),
-                Padding(
-                  padding: const EdgeInsets.only(left: 10),
-                  child: Text(
-                    phone,
-                    style: GoogleFonts.shareTechMono(),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          const Divider(
-            color: Colors.black,
-          )
-        ],
-      ),
     );
   }
 }

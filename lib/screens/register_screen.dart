@@ -3,7 +3,9 @@ import 'dart:io';
 import 'package:flinger/resource/constants.dart';
 import 'package:flinger/widgets/profile_widget.dart';
 import 'package:flinger/widgets/red_button.dart';
+import 'package:flinger/widgets/start_location_text_field.dart';
 import 'package:flinger/widgets/text_field_icon.dart';
+import 'package:flinger/widgets/text_field_red.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -26,10 +28,11 @@ class RegisterScreen extends StatelessWidget {
                 flex: 4,
                 child: Container(color: Colors.transparent, child: second())),
             Flexible(
-                flex: 11, child: Container(color: Colors.transparent, child: third())),
+                flex: 12,
+                child: Container(color: Colors.transparent, child: third())),
             Flexible(
-                flex: 4, child: Container(color: Colors.transparent, child: fourth())),
-           
+                flex: 4,
+                child: Container(color: Colors.transparent, child: fourth())),
           ],
         ),
       ),
@@ -137,16 +140,9 @@ class RegisterScreen extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
         ),
-        TextFieldIcon(
-            isEmail: false,
-            isPassword: false,
-            topPadding: 0,
-            first: Image.asset(
-              "assets/phone_number_icon.png",
-              height: 20,
-              width: 20,
-            ),
-            second: const Icon(Icons.check)),
+        const TextFieldRed(
+          suffix: StartLocationTextField(),
+        ),
         Padding(
           padding: const EdgeInsets.only(top: 16),
           child: Text(

@@ -1,5 +1,9 @@
+import 'dart:developer';
+
+import 'package:flinger/classes/set_check.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class TextFieldIcon extends StatelessWidget {
   final bool isEmail;
@@ -28,7 +32,6 @@ class TextFieldIcon extends StatelessWidget {
             cursorColor: const Color(0xFFff0008),
             style: GoogleFonts.shareTechMono(fontSize: 16),
             keyboardType: isEmail ? TextInputType.emailAddress : null,
-            obscureText: isPassword,
             decoration: InputDecoration(
               contentPadding: EdgeInsets.only(
                   top: topPadding,

@@ -1,9 +1,13 @@
+
+import 'package:flinger/classes/set_check.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
+import 'package:provider/provider.dart';
 
 class TextFieldRed extends StatefulWidget {
   final Widget suffix;
+
   const TextFieldRed({super.key, required this.suffix});
 
   @override
@@ -13,6 +17,8 @@ class TextFieldRed extends StatefulWidget {
 class _TextFieldRedState extends State<TextFieldRed> {
   @override
   Widget build(BuildContext context) {
+    final providerSetCheck = Provider.of<SetCheck>(context);
+
     return Stack(
       children: [
         TextField(
