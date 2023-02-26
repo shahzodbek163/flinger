@@ -69,34 +69,41 @@ class CompanyCode extends StatelessWidget {
         child: Padding(
             padding: const EdgeInsets.all(10),
             child: SingleChildScrollView(
-              child: Column(
-                children: List.generate(
-                    codes.length,
-                    (index) => companyContainer(
-                        index == 0 || index == 1
-                            ? images[0]
-                            : index == 2 || index == 3
-                                ? images[1]
-                                : index == 4 || index == 5
-                                    ? images[2]
-                                    : index == 6 || index == 7
-                                        ? images[3]
-                                        : index == 8 || index == 9
-                                            ? images[4]
-                                            : images[4],
-                        index == 0 || index == 1
-                            ? companyName[0]
-                            : index == 2 || index == 3
-                                ? companyName[1]
-                                : index == 4 || index == 5
-                                    ? companyName[2]
-                                    : index == 6 || index == 7
-                                        ? companyName[3]
-                                        : index == 8 || index == 9
-                                            ? companyName[4]
-                                            : companyName[4],
-                        codes[index],
-                        context)),
+              child: SizedBox(
+                height: 510,
+                width: 200,
+                child: ListView(
+                  physics: const BouncingScrollPhysics(),
+                  children: List.generate(
+              
+                      codes.length,
+              
+                      (index) => companyContainer(
+                          index == 0 || index == 1
+                              ? images[0]
+                              : index == 2 || index == 3
+                                  ? images[1]
+                                  : index == 4 || index == 5
+                                      ? images[2]
+                                      : index == 6 || index == 7
+                                          ? images[3]
+                                          : index == 8 || index == 9
+                                              ? images[4]
+                                              : images[4],
+                          index == 0 || index == 1
+                              ? companyName[0]
+                              : index == 2 || index == 3
+                                  ? companyName[1]
+                                  : index == 4 || index == 5
+                                      ? companyName[2]
+                                      : index == 6 || index == 7
+                                          ? companyName[3]
+                                          : index == 8 || index == 9
+                                              ? companyName[4]
+                                              : companyName[4],
+                          codes[index],
+                          context)),
+                ),
               ),
             )),
       ),

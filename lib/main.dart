@@ -10,7 +10,7 @@ void main(List<String> args) {
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider(create: (context) => SetCheck()),
-      Provider<BlocSetCode>  (create: (context) => BlocSetCode()),
+      Provider<BlocSetCode>(create: (context) => BlocSetCode()),
     ],
     child: const MaterialApp(
       home: WellcomeScreen(),
