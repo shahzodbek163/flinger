@@ -60,7 +60,7 @@ class CompanyCode extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 180, horizontal: 50),
+      padding: const EdgeInsets.symmetric(vertical: 250, horizontal: 60),
       child: Container(
         height: 200,
         width: 200,
@@ -75,9 +75,7 @@ class CompanyCode extends StatelessWidget {
                 child: ListView(
                   physics: const BouncingScrollPhysics(),
                   children: List.generate(
-              
                       codes.length,
-              
                       (index) => companyContainer(
                           index == 0 || index == 1
                               ? images[0]
