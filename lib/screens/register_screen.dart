@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flinger/resource/constants.dart';
+import 'package:flinger/widgets/profile_widget.dart';
 import 'package:flinger/widgets/red_button.dart';
 import 'package:flinger/widgets/text_field_icon.dart';
 import 'package:flutter/material.dart';
@@ -59,88 +62,60 @@ class RegisterScreen extends StatelessWidget {
   }
 
   Widget second() {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(right: 30),
-              child: Stack(
-                alignment: Alignment.bottomRight,
-                children: [
-                  Container(
-                    height: 90,
-                    width: 90,
-                    decoration: const BoxDecoration(
-                        shape: BoxShape.circle, color: Colors.amber),
-                  ),
-                  Container(
-                      padding: const EdgeInsets.all(3),
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Constants.redButtonColor,
-                      ),
-                      child: const Icon(
-                        Icons.edit,
-                        color: Colors.white,
-                        size: 20,
-                      )),
-                ],
+    const    Flexible(
+          flex: 1,
+          child:  ProfileWidget()),
+        Flexible(
+          flex: 2,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "Firstname",
+                style: GoogleFonts.ubuntu(
+                    color: Colors.black38,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500),
               ),
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "Firstname",
+              TextFieldIcon(
+                  isEmail: false,
+                  isPassword: false,
+                  topPadding: 0,
+                  first: Image.asset(
+                    "assets/firstname.png",
+                    height: 20,
+                    width: 20,
+                  ),
+                  second: const Icon(Icons.check)),
+              Padding(
+                padding: const EdgeInsets.only(top: 10),
+                child: Text(
+                  "Lastname",
                   style: GoogleFonts.ubuntu(
                       color: Colors.black38,
                       fontSize: 14,
                       fontWeight: FontWeight.w500),
+                  textAlign: TextAlign.center,
                 ),
-                SizedBox(
-                  width: 210,
-                  child: TextFieldIcon(
-                      isEmail: false,
-                      isPassword: false,
-                      topPadding: 0,
-                      first: Image.asset(
-                        "assets/firstname.png",
-                        height: 20,
-                        width: 20,
-                      ),
-                      second: const Icon(Icons.check)),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 10),
-                  child: Text(
-                    "Lastname",
-                    style: GoogleFonts.ubuntu(
-                        color: Colors.black38,
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500),
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-                SizedBox(
-                  width: 210,
-                  child: TextFieldIcon(
-                      isEmail: false,
-                      topPadding: 0,
-                      isPassword: false,
-                      first: Image.asset(
-                        "assets/account_two.png",
-                        height: 20,
-                        width: 20,
-                      ),
-                      second: const Icon(Icons.check)),
-                ),
-              ],
-            ),
-          ],
+              ),
+              SizedBox(
+                width: 300,
+                child: TextFieldIcon(
+                    isEmail: false,
+                    topPadding: 0,
+                    isPassword: false,
+                    first: Image.asset(
+                      "assets/account_two.png",
+                      height: 20,
+                      width: 20,
+                    ),
+                    second: const Icon(Icons.check)),
+              ),
+            ],
+          ),
         ),
       ],
     );

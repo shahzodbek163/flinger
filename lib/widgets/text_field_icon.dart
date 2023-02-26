@@ -15,7 +15,7 @@ class TextFieldIcon extends StatelessWidget {
     this.isSecond = false,
     required this.first,
     required this.second,
-     this.topPadding = 17,
+    this.topPadding = 17,
   });
 
   @override
@@ -29,8 +29,12 @@ class TextFieldIcon extends StatelessWidget {
             style: GoogleFonts.shareTechMono(fontSize: 16),
             keyboardType: isEmail ? TextInputType.emailAddress : null,
             obscureText: isPassword,
-            decoration:  InputDecoration(
-              contentPadding: EdgeInsets.only(top: topPadding, left: 36, right: 36, bottom: topPadding == 17 ? 0 : 10),
+            decoration: InputDecoration(
+              contentPadding: EdgeInsets.only(
+                  top: topPadding,
+                  left: 36,
+                  right: 36,
+                  bottom: topPadding == 17 ? 0 : 10),
               focusedBorder: const UnderlineInputBorder(
                   borderSide: BorderSide(color: Color(0xFFff0008), width: 2)),
             ),
