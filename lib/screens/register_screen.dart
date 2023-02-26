@@ -15,21 +15,21 @@ class RegisterScreen extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Padding(
-        padding: const EdgeInsets.only(top: 100, left: 30, right: 30),
+        padding: const EdgeInsets.only(top: 80, left: 30, right: 30),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Flexible(flex: 3, child: first()),
-            Flexible(flex: 4, child: second()),
-            Flexible(flex: 10, child: third()),
-            Flexible(flex: 5, child: fourth()),
             Flexible(
-                flex: 1,
-                child: Container(
-                  height: 300,
-                  width: 200,
-                  color: Colors.transparent,
-                )),
+                flex: 2,
+                child: Container(color: Colors.transparent, child: first())),
+            Flexible(
+                flex: 4,
+                child: Container(color: Colors.transparent, child: second())),
+            Flexible(
+                flex: 11, child: Container(color: Colors.transparent, child: third())),
+            Flexible(
+                flex: 4, child: Container(color: Colors.transparent, child: fourth())),
+           
           ],
         ),
       ),
@@ -62,62 +62,63 @@ class RegisterScreen extends StatelessWidget {
   }
 
   Widget second() {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-    const    Flexible(
-          flex: 1,
-          child:  ProfileWidget()),
-        Flexible(
-          flex: 2,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "Firstname",
-                style: GoogleFonts.ubuntu(
-                    color: Colors.black38,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500),
-              ),
-              TextFieldIcon(
-                  isEmail: false,
-                  isPassword: false,
-                  topPadding: 0,
-                  first: Image.asset(
-                    "assets/firstname.png",
-                    height: 20,
-                    width: 20,
-                  ),
-                  second: const Icon(Icons.check)),
-              Padding(
-                padding: const EdgeInsets.only(top: 10),
-                child: Text(
-                  "Lastname",
+    return Padding(
+      padding: const EdgeInsets.only(top: 10),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          const Flexible(flex: 1, child: ProfileWidget()),
+          Flexible(
+            flex: 2,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "Firstname",
                   style: GoogleFonts.ubuntu(
                       color: Colors.black38,
                       fontSize: 14,
                       fontWeight: FontWeight.w500),
-                  textAlign: TextAlign.center,
                 ),
-              ),
-              SizedBox(
-                width: 300,
-                child: TextFieldIcon(
+                TextFieldIcon(
                     isEmail: false,
-                    topPadding: 0,
                     isPassword: false,
+                    topPadding: 0,
                     first: Image.asset(
-                      "assets/account_two.png",
+                      "assets/firstname.png",
                       height: 20,
                       width: 20,
                     ),
                     second: const Icon(Icons.check)),
-              ),
-            ],
+                Padding(
+                  padding: const EdgeInsets.only(top: 10),
+                  child: Text(
+                    "Lastname",
+                    style: GoogleFonts.ubuntu(
+                        color: Colors.black38,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w500),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+                SizedBox(
+                  width: 300,
+                  child: TextFieldIcon(
+                      isEmail: false,
+                      topPadding: 0,
+                      isPassword: false,
+                      first: Image.asset(
+                        "assets/account_two.png",
+                        height: 20,
+                        width: 20,
+                      ),
+                      second: const Icon(Icons.check)),
+                ),
+              ],
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 
@@ -126,9 +127,9 @@ class RegisterScreen extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: const EdgeInsets.only(top: 16),
+          padding: const EdgeInsets.only(top: 15),
           child: Text(
-            "Bio",
+            "Phone number",
             style: GoogleFonts.ubuntu(
                 color: Colors.black38,
                 fontSize: 14,
@@ -141,7 +142,7 @@ class RegisterScreen extends StatelessWidget {
             isPassword: false,
             topPadding: 0,
             first: Image.asset(
-              "assets/bio.png",
+              "assets/phone_number_icon.png",
               height: 20,
               width: 20,
             ),
@@ -201,6 +202,27 @@ class RegisterScreen extends StatelessWidget {
           ),
         ),
         Padding(
+          padding: const EdgeInsets.only(top: 16),
+          child: Text(
+            "Bio",
+            style: GoogleFonts.ubuntu(
+                color: Colors.black38,
+                fontSize: 14,
+                fontWeight: FontWeight.w500),
+            textAlign: TextAlign.center,
+          ),
+        ),
+        TextFieldIcon(
+            isEmail: false,
+            isPassword: false,
+            topPadding: 0,
+            first: Image.asset(
+              "assets/bio.png",
+              height: 20,
+              width: 20,
+            ),
+            second: const Icon(Icons.check)),
+        Padding(
           padding: const EdgeInsets.only(top: 20),
           child: Row(
             children: [
@@ -228,7 +250,7 @@ Terms and condition""",
       children: [
         Padding(
           padding: const EdgeInsets.only(
-            top: 40,
+            top: 20,
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -237,14 +259,14 @@ Terms and condition""",
                 color: Constants.redButtonColor,
                 shadowColor: Constants.redButtonShadow,
                 textColor: Constants.redButtonTextColor,
-                buttonText: "SIGN UP",
+                buttonText: "REGISTER",
                 onTap: () {},
               ),
             ],
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 30),
+          padding: const EdgeInsets.only(top: 20),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
