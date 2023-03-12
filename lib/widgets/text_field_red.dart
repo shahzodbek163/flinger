@@ -1,4 +1,3 @@
-
 import 'package:flinger/classes/set_check.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -7,8 +6,14 @@ import 'package:provider/provider.dart';
 
 class TextFieldRed extends StatefulWidget {
   final Widget suffix;
+  final Widget second;
+  final TextEditingController textEditingController;
 
-  const TextFieldRed({super.key, required this.suffix});
+  const TextFieldRed(
+      {super.key,
+      required this.suffix,
+      this.second = const SizedBox(),
+      required this.textEditingController});
 
   @override
   State<TextFieldRed> createState() => _TextFieldRedState();
@@ -17,11 +22,10 @@ class TextFieldRed extends StatefulWidget {
 class _TextFieldRedState extends State<TextFieldRed> {
   @override
   Widget build(BuildContext context) {
-    final providerSetCheck = Provider.of<SetCheck>(context);
-
     return Stack(
       children: [
         TextField(
+          controller: widget.textEditingController,
           cursorColor: const Color(0xFFff0008),
           maxLength: 9,
           cursorHeight: 16,
@@ -40,17 +44,10 @@ class _TextFieldRedState extends State<TextFieldRed> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               widget.suffix,
-              const Visibility(
-                visible: false,
-                child: Padding(
-                  padding: EdgeInsets.only(left: 176),
-                  child: Icon(
-                    Icons.check,
-                    size: 20,
-                    color: Color(0xFFff0008),
-                  ),
-                ),
-              )
+              Padding(
+                padding: const EdgeInsets.only(left: 218),
+                child: widget.second,
+              ),
             ],
           ),
         ),

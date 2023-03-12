@@ -87,10 +87,8 @@ class WellcomeScreen extends StatelessWidget {
         ),
         InkWell(
           onTap: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => const RegisterScreen()));
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => RegisterScreen()));
           },
           child: Text(
             "GET REGISTERED",

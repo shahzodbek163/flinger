@@ -27,9 +27,9 @@ class FirstScreen extends StatelessWidget {
           const SizedBox(
             height: 10,
           ),
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 50),
-            child: TextFieldRed(suffix: StartLocationTextField()),
+           Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 50),
+            child: TextFieldRed(suffix: const StartLocationTextField(), textEditingController: TextEditingController(),),
           ),
           const SizedBox(
             height: 30,

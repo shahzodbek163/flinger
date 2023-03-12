@@ -83,19 +83,21 @@ class LoginScreen extends StatelessWidget {
               color: Colors.black38, fontSize: 14, fontWeight: FontWeight.w500),
           textAlign: TextAlign.center,
         ),
-        const TextFieldRed(suffix: StartLocationTextField()),
+         TextFieldRed(suffix: const StartLocationTextField(),textEditingController: TextEditingController(),),
         Text(
           "Password",
           style: GoogleFonts.ubuntu(
               color: Colors.black38, fontSize: 14, fontWeight: FontWeight.w500),
           textAlign: TextAlign.center,
         ),
-        const TextFieldIcon(
+         TextFieldIcon(
             isEmail: false,
             isPassword: true,
             topPadding: 0,
-            first: Icon(Icons.lock),
-            second: Icon(Icons.remove_red_eye)),
+            first: const Icon(Icons.lock),
+            second: const Icon(Icons.remove_red_eye),
+            textEditingController: TextEditingController(),
+            ),
         const SizedBox(
           height: 40,
         ),

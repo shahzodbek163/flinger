@@ -19,67 +19,44 @@ class ProfileWidget extends StatelessWidget {
     final imagePickerBloC = Provider.of<ImagePickerBloC>(context);
     return Padding(
       padding: const EdgeInsets.only(right: 30),
-      child: Stack(
-        alignment: Alignment.bottomRight,
-        children: [
-          StreamBuilder<XFile>(
-              stream: imagePickerBloC.xFileStream,
-              builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  return GestureDetector(
-                    onTap: () => imagePickerBloC.imageActionStreamSink
-                        .add(ImageActions.pick),
-                    child: Container(
-                      height: 90,
-                      width: 90,
-                      decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Colors.amber,
-                          image: DecorationImage(
-                              image: FileImage(File(snapshot.data!.path)),
-                              fit: BoxFit.cover)),
-                    ),
-                  );
-                } else {
-                  return GestureDetector(
-                    onTap: () => imagePickerBloC.imageActionStreamSink
-                        .add(ImageActions.pick),
-                    child: Container(
-                      alignment: Alignment.center,
-                      height: 90,
-                      width: 90,
-                      decoration: const BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.amber,
-                      ),
-                      child: Container(
-                        width: 30,
-                        height: 30,
-                        decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Colors.white.withOpacity(0.7)),
-                        child: const Icon(
-                          Icons.camera_alt_rounded,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                  );
-                }
-              }),
-          Container(
-              padding: const EdgeInsets.all(3),
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: Constants.redButtonColor,
-              ),
-              child: const Icon(
-                Icons.edit,
-                color: Colors.white,
-                size: 20,
-              )),
-        ],
-      ),
+      child: StreamBuilder<XFile>(
+          stream: imagePickerBloC.xFileStream,
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return GestureDetector(
+                onTap: () => imagePickerBloC.imageActionStreamSink
+                    .add(ImageActions.pick),
+                child: Container(
+                  height: 90,
+                  width: 90,
+                  decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.amber,
+                      image: DecorationImage(
+                          image: FileImage(File(snapshot.data!.path)),
+                          fit: BoxFit.cover)),
+                ),
+              );
+            } else {
+              return GestureDetector(
+                onTap: () => imagePickerBloC.imageActionStreamSink
+                    .add(ImageActions.pick),
+                child: Container(
+                  alignment: Alignment.center,
+                  height: 90,
+                  width: 90,
+                  decoration: const BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Colors.amber,
+                  ),
+                  child: const Icon(
+                    Icons.camera_alt_rounded,
+                    color: Colors.black,
+                  ),
+                ),
+              );
+            }
+          }),
     );
   }
 }
