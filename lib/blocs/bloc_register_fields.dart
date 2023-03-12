@@ -39,7 +39,7 @@ class RegisterBloc extends Bloc<RegisterEvent, List<bool>> {
   RegisterBloc(List<bool> initialValue) : super(initialValue) {
     on<RegisterButtonPressed>((event, emit) {
       if (event.getFirstname.isEmpty) {
-        emit();
+        log("empty");
       } else {
         log("is not empty");
       }
@@ -52,7 +52,7 @@ class RegisterBloc extends Bloc<RegisterEvent, List<bool>> {
       }
       if (event.getPassword.isEmpty) {
         
-        emit(state[2] = false);
+        emit(state);
       } else {
         state[2] = true;
         emit(state);
