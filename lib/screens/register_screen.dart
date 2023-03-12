@@ -21,7 +21,8 @@ class RegisterScreen extends StatelessWidget {
 
   final cubitChangeCheck = CubitChangeCheck(false);
 
-  final blocRegisterFields = RegisterBloc([false, false, false, false]);
+  final blocRegisterFields =
+      RegisterBloc(RegisterData(list:  [false, false, false, false]));
 
   final cubitCancelFirstname = CubitCancelFirstname(false);
   final cubitCancelNumber = CubitCancelNumber(false);
@@ -36,39 +37,26 @@ class RegisterScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (context) => cubitCancelFirstname,
-        ),
-        BlocProvider(
-          create: (context) => cubitCancelNumber,
-        ),
-        BlocProvider(
-          create: (context) => cubitCancelPassword,
-        ),
-      ],
-      child: Scaffold(
-        resizeToAvoidBottomInset: false,
-        body: Padding(
-          padding: const EdgeInsets.only(top: 80, left: 30, right: 30),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Flexible(
-                  flex: 2,
-                  child: Container(color: Colors.transparent, child: first())),
-              Flexible(
-                  flex: 4,
-                  child: Container(color: Colors.transparent, child: second())),
-              Flexible(
-                  flex: 12,
-                  child: Container(color: Colors.transparent, child: third())),
-              Flexible(
-                  flex: 4,
-                  child: Container(color: Colors.transparent, child: fourth())),
-            ],
-          ),
+    return Scaffold(
+      resizeToAvoidBottomInset: false,
+      body: Padding(
+        padding: const EdgeInsets.only(top: 80, left: 30, right: 30),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Flexible(
+                flex: 2,
+                child: Container(color: Colors.transparent, child: first())),
+            Flexible(
+                flex: 4,
+                child: Container(color: Colors.transparent, child: second())),
+            Flexible(
+                flex: 12,
+                child: Container(color: Colors.transparent, child: third())),
+            Flexible(
+                flex: 4,
+                child: Container(color: Colors.transparent, child: fourth())),
+          ],
         ),
       ),
     );
@@ -128,10 +116,13 @@ class RegisterScreen extends StatelessWidget {
                     height: 20,
                     width: 20,
                   ),
-                  second: BlocBuilder<RegisterBloc, List<bool>>(
+                  second: BlocBuilder<RegisterBloc, RegisterData>(
                     bloc: blocRegisterFields,
                     builder: (context, state) {
-                      return state[0] ? const CancelIcon() : const SizedBox();
+                      log("salom");
+                      return state.list[0]
+                          ? const CancelIcon()
+                          : const SizedBox();
                     },
                   ),
                   textEditingController: firstnameController,
@@ -186,10 +177,10 @@ class RegisterScreen extends StatelessWidget {
         ),
         TextFieldRed(
           suffix: const StartLocationTextField(),
-          second: BlocBuilder<RegisterBloc, List<bool>>(
+          second: BlocBuilder<RegisterBloc, RegisterData>(
             bloc: blocRegisterFields,
             builder: (context, state) {
-              return state[1] ? const CancelIcon() : const SizedBox();
+              return state.list[1] ? const CancelIcon() : const SizedBox();
             },
           ),
           textEditingController: numberController,
@@ -219,10 +210,10 @@ class RegisterScreen extends StatelessWidget {
             height: 20,
             width: 20,
           ),
-          second: BlocBuilder<RegisterBloc, List<bool>>(
+          second: BlocBuilder<RegisterBloc, RegisterData>(
             bloc: blocRegisterFields,
             builder: (context, state) {
-              return state[2] ? const CancelIcon() : const SizedBox();
+              return state.list[2] ? const CancelIcon() : const SizedBox();
             },
           ),
           textEditingController: passwordController,
@@ -252,11 +243,10 @@ class RegisterScreen extends StatelessWidget {
             height: 20,
             width: 20,
           ),
-          second: BlocBuilder<RegisterBloc, List<bool>>(
+          second: BlocBuilder<RegisterBloc, RegisterData>(
             bloc: blocRegisterFields,
             builder: (context, state) {
-              log(state[3].toString());
-              return state[3] ? const CancelIcon() : const SizedBox();
+              return state.list[3] ? const CancelIcon() : const SizedBox();
             },
           ),
           textEditingController: retypePasswprdController,
@@ -334,7 +324,6 @@ Terms and condition""",
                 textColor: Constants.redButtonTextColor,
                 buttonText: "REGISTER",
                 onTap: () {
-                  log(blocRegisterFields.state.toString() + " bz");
                   final onButtonPressed = RegisterButtonPressed(
                       firstname: firstnameController.text,
                       lastname: lastnameController.text,
