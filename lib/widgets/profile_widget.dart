@@ -2,9 +2,13 @@ import 'package:flinger/resource/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:image_picker/image_picker.dart';
 
 class ProfileWidget extends StatelessWidget {
-  const ProfileWidget({super.key});
+  ProfileWidget({super.key});
+
+  final ImagePicker imagePicker = ImagePicker();
+  XFile? xFile;
 
   @override
   Widget build(BuildContext context) {
@@ -13,11 +17,16 @@ class ProfileWidget extends StatelessWidget {
       child: Stack(
         alignment: Alignment.bottomRight,
         children: [
-          Container(
-            height: 90,
-            width: 90,
-            decoration: const BoxDecoration(
-                shape: BoxShape.circle, color: Colors.amber),
+          GestureDetector(
+            onTap: () async {
+              xFile = await imagePicker.pickImage(source: ImageSource.camera);
+            },
+            child: Container(
+              height: 90,
+              width: 90,
+              decoration: const BoxDecoration(
+                  shape: BoxShape.circle, color: Colors.amber),
+            ),
           ),
           Container(
               padding: const EdgeInsets.all(3),

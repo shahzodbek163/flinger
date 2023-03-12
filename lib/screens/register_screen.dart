@@ -70,7 +70,7 @@ class RegisterScreen extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          const Flexible(flex: 1, child: ProfileWidget()),
+           Flexible(flex: 1, child: ProfileWidget()),
           Flexible(
             flex: 2,
             child: Column(
