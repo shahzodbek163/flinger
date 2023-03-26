@@ -22,7 +22,7 @@ class RegisterScreen extends StatelessWidget {
   final cubitChangeCheck = CubitChangeCheck(false);
 
   final blocRegisterFields =
-      RegisterBloc(RegisterData(list:  [false, false, false, false]));
+      RegisterBloc([false, false, false, false]);
 
   final cubitCancelFirstname = CubitCancelFirstname(false);
   final cubitCancelNumber = CubitCancelNumber(false);
@@ -116,11 +116,11 @@ class RegisterScreen extends StatelessWidget {
                     height: 20,
                     width: 20,
                   ),
-                  second: BlocBuilder<RegisterBloc, RegisterData>(
+                  second: BlocBuilder<RegisterBloc, List<bool>>(
                     bloc: blocRegisterFields,
                     builder: (context, state) {
                       log("salom");
-                      return state.list[0]
+                      return state[0]
                           ? const CancelIcon()
                           : const SizedBox();
                     },
@@ -177,10 +177,10 @@ class RegisterScreen extends StatelessWidget {
         ),
         TextFieldRed(
           suffix: const StartLocationTextField(),
-          second: BlocBuilder<RegisterBloc, RegisterData>(
+          second: BlocBuilder<RegisterBloc, List<bool>>(
             bloc: blocRegisterFields,
             builder: (context, state) {
-              return state.list[1] ? const CancelIcon() : const SizedBox();
+              return state[1] ? const CancelIcon() : const SizedBox();
             },
           ),
           textEditingController: numberController,
@@ -210,10 +210,10 @@ class RegisterScreen extends StatelessWidget {
             height: 20,
             width: 20,
           ),
-          second: BlocBuilder<RegisterBloc, RegisterData>(
+          second: BlocBuilder<RegisterBloc, List<bool>>(
             bloc: blocRegisterFields,
             builder: (context, state) {
-              return state.list[2] ? const CancelIcon() : const SizedBox();
+              return state[2] ? const CancelIcon() : const SizedBox();
             },
           ),
           textEditingController: passwordController,
@@ -243,10 +243,10 @@ class RegisterScreen extends StatelessWidget {
             height: 20,
             width: 20,
           ),
-          second: BlocBuilder<RegisterBloc, RegisterData>(
+          second: BlocBuilder<RegisterBloc, List<bool>>(
             bloc: blocRegisterFields,
             builder: (context, state) {
-              return state.list[3] ? const CancelIcon() : const SizedBox();
+              return state[3] ? const CancelIcon() : const SizedBox();
             },
           ),
           textEditingController: retypePasswprdController,
@@ -324,7 +324,7 @@ Terms and condition""",
                 textColor: Constants.redButtonTextColor,
                 buttonText: "REGISTER",
                 onTap: () {
-                  final onButtonPressed = RegisterButtonPressed(
+                  RegisterButtonPressed onButtonPressed = RegisterButtonPressed(
                       firstname: firstnameController.text,
                       lastname: lastnameController.text,
                       phonenumber: numberController.text,

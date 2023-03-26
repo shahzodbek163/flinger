@@ -1,32 +1,44 @@
+import 'package:flinger/blocs/bloc.dart';
+import 'package:flinger/classes/klas.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class Simple extends StatelessWidget {
-  const Simple({super.key});
+   Simple({super.key});
+
+  final simpleBloc = SimpleBloc(Klas());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Center(
-      child: SafeArea(
-        child: Column(
-          children: [
-            container(100, 200, Colors.green, 4),
-            container(50, 200, Colors.red, 5),
-            container(300, 200, Colors.yellow, 10),
-            container(300, 200, Colors.deepPurple, 5),
-            container(300, 200, Colors.teal, 1),
-          ],
-        ),
-      ),
+        body: SafeArea(
+      child: Center(
+          child: Column(
+            children: [
+              BlocBuilder<SimpleBloc, Klas>(
+                bloc: simpleBloc,
+                builder: (context, state) {
+                  return Container(
+                    height: 200,
+                    width: 200,
+                    color: state.getBool == false ? Colors.black : Colors.red,
+              
+                  );
+                }
+              ),
+              GestureDetector(
+                onTap: () {
+                  simpleBloc.add(ButtonPressed());
+                },
+                child: Container(
+                      height: 100,
+                      width: 100,
+                      color: Colors.red,
+                   
+                    ),
+              ),
+            ],
+          )),
     ));
-  }
-
-  Widget container(double height, double width, Color color, int flex) {
-    return Flexible(
-      flex: flex,
-      child: Container(
-        color: color,
-      ),
-    );
   }
 }

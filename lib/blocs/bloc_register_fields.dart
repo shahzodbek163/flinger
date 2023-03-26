@@ -60,37 +60,34 @@ class PasswordTextChanged extends RegisterEvent {
   List<Object?> get props => throw UnimplementedError();
 }
 
-class RegisterBloc extends Bloc<RegisterEvent, RegisterData> {
-  RegisterBloc(RegisterData initialValue) : super(initialValue) {
+class RegisterBloc extends Bloc<RegisterEvent, List<bool>> {
+  RegisterBloc(List<bool> initialValue) : super(initialValue) {
     on<RegisterButtonPressed>((event, emit) {
       print(event);
       if (event.getFirstname.isEmpty) {
-        state.list[0] = false;
-        emit(state);
+       
+        emit([false, false, false, false]);
       } else {
-        state.list[0] = true;
-        emit(state);
+        emit([true, false, false, false]);
       }
       if (event.getPhoneNumber.isEmpty) {
-        state.list[1] = false;
-        emit(state);
+        
+        emit([false, false, false, false]);
       } else {
-        state.list[1] = true;
-        emit(state);
+        emit([false, true, false, false]);
       }
       if (event.getPassword.isEmpty) {
-        state.list[2] = false;
-        emit(state);
+      
+       emit([false, false, false, false]);
       } else {
-        state.list[2] = true;
-        emit(state);
+        emit([false, false, true, false]);
       }
       if (event.getRetypePassword.isEmpty) {
-        state.list[3] = false;
-        emit(state);
+       
+       emit([false, false, false, false]);
       } else {
-        state.list[3] = true;
-        emit(state);
+    
+   emit([false, false, false, true]);
       }
     });
     on<FirstnameTextChanged>((event, emit) {});
@@ -98,7 +95,7 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterData> {
     on<PasswordTextChanged>((event, emit) {});
   }
   @override
-  void onChange(Change<RegisterData> change) {
+  void onChange(Change<List<bool>> change) {
     log(change.toString() + "d");
     super.onChange(change);
   }
