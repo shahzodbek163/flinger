@@ -1,7 +1,5 @@
-import 'dart:developer';
-
-import 'package:flinger/blocs/bloc_set_code.dart';
-import 'package:flinger/widgets/company_code.dart';
+import 'package:flinger/controller/blocs/bloc_set_code.dart';
+import 'package:flinger/view/widgets/company_code.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';

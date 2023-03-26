@@ -1,6 +1,5 @@
 import 'dart:io';
-
-import 'package:flinger/blocs/bloc_set_code.dart';
+import 'package:flinger/controller/blocs/bloc_set_code.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';

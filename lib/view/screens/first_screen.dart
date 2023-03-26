@@ -1,7 +1,7 @@
-import 'package:flinger/resource/constants.dart';
-import 'package:flinger/widgets/red_button.dart';
-import 'package:flinger/widgets/start_location_text_field.dart';
-import 'package:flinger/widgets/text_field_red.dart';
+import 'package:flinger/model/constants.dart';
+import 'package:flinger/view/widgets/red_button.dart';
+import 'package:flinger/view/widgets/start_location_text_field.dart';
+import 'package:flinger/view/widgets/text_field_red.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -27,9 +27,12 @@ class FirstScreen extends StatelessWidget {
           const SizedBox(
             height: 10,
           ),
-           Padding(
+          Padding(
             padding: const EdgeInsets.symmetric(horizontal: 50),
-            child: TextFieldRed(suffix: const StartLocationTextField(), textEditingController: TextEditingController(),),
+            child: TextFieldRed(
+              suffix: const StartLocationTextField(),
+              textEditingController: TextEditingController(),
+            ),
           ),
           const SizedBox(
             height: 30,

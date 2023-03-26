@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:flinger/blocs/image_picker_bloC.dart';
-import 'package:flinger/resource/constants.dart';
+import 'package:flinger/model/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';

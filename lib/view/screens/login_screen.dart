@@ -1,8 +1,8 @@
-import 'package:flinger/resource/constants.dart';
-import 'package:flinger/widgets/red_button.dart';
-import 'package:flinger/widgets/start_location_text_field.dart';
-import 'package:flinger/widgets/text_field_icon.dart';
-import 'package:flinger/widgets/text_field_red.dart';
+import 'package:flinger/model/constants.dart';
+import 'package:flinger/view/widgets/red_button.dart';
+import 'package:flinger/view/widgets/start_location_text_field.dart';
+import 'package:flinger/view/widgets/text_field_icon.dart';
+import 'package:flinger/view/widgets/text_field_red.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -63,7 +63,6 @@ class LoginScreen extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
         ),
-       
       ],
     );
   }
@@ -73,31 +72,33 @@ class LoginScreen extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-      const   SizedBox(
+        const SizedBox(
           height: 10,
         ),
         Text(
           "Phone number",
-          
           style: GoogleFonts.ubuntu(
               color: Colors.black38, fontSize: 14, fontWeight: FontWeight.w500),
           textAlign: TextAlign.center,
         ),
-         TextFieldRed(suffix: const StartLocationTextField(),textEditingController: TextEditingController(),),
+        TextFieldRed(
+          suffix: const StartLocationTextField(),
+          textEditingController: TextEditingController(),
+        ),
         Text(
           "Password",
           style: GoogleFonts.ubuntu(
               color: Colors.black38, fontSize: 14, fontWeight: FontWeight.w500),
           textAlign: TextAlign.center,
         ),
-         TextFieldIcon(
-            isEmail: false,
-            isPassword: true,
-            topPadding: 0,
-            first: const Icon(Icons.lock),
-            second: const Icon(Icons.remove_red_eye),
-            textEditingController: TextEditingController(),
-            ),
+        TextFieldIcon(
+          isEmail: false,
+          isPassword: true,
+          topPadding: 0,
+          first: const Icon(Icons.lock),
+          second: const Icon(Icons.remove_red_eye),
+          textEditingController: TextEditingController(),
+        ),
         const SizedBox(
           height: 40,
         ),

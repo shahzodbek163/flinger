@@ -1,4 +1,4 @@
-import 'package:flinger/resource/constants.dart';
+/* import 'package:flinger/resource/constants.dart';
 import 'package:flinger/screens/login_screen.dart';
 import 'package:flinger/screens/register_screen.dart';
 import 'package:flinger/widgets/red_button.dart';
@@ -100,3 +100,4 @@ class WellcomeScreen extends StatelessWidget {
     );
   }
 }
+ */

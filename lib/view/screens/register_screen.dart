@@ -1,28 +1,25 @@
 import 'dart:developer';
-
-import 'package:flinger/blocs/bloc_register_fields.dart';
-import 'package:flinger/cubits/cubit_cancel_firstname.dart';
-import 'package:flinger/cubits/cubit_cancel_number.dart';
-import 'package:flinger/cubits/cubit_cancel_password.dart';
-import 'package:flinger/cubits/cubit_change_check.dart';
-import 'package:flinger/resource/constants.dart';
-import 'package:flinger/widgets/cancel_icon.dart';
-import 'package:flinger/widgets/profile_widget.dart';
-import 'package:flinger/widgets/red_button.dart';
-import 'package:flinger/widgets/start_location_text_field.dart';
-import 'package:flinger/widgets/text_field_icon.dart';
-import 'package:flinger/widgets/text_field_red.dart';
+import 'package:flinger/controller/blocs/bloc_register_fields.dart';
+import 'package:flinger/controller/cubits/cubit_cancel_firstname.dart';
+import 'package:flinger/controller/cubits/cubit_cancel_number.dart';
+import 'package:flinger/controller/cubits/cubit_cancel_password.dart';
+import 'package:flinger/controller/cubits/cubit_change_check.dart';
+import 'package:flinger/model/constants.dart';
+import 'package:flinger/view/widgets/cancel_icon.dart';
+import 'package:flinger/view/widgets/profile_widget.dart';
+import 'package:flinger/view/widgets/red_button.dart';
+import 'package:flinger/view/widgets/start_location_text_field.dart';
+import 'package:flinger/view/widgets/text_field_icon.dart';
+import 'package:flinger/view/widgets/text_field_red.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class RegisterScreen extends StatelessWidget {
   RegisterScreen({super.key});
 
   final cubitChangeCheck = CubitChangeCheck(false);
-
-  final blocRegisterFields =
-      RegisterBloc([false, false, false, false]);
 
   final cubitCancelFirstname = CubitCancelFirstname(false);
   final cubitCancelNumber = CubitCancelNumber(false);
@@ -32,11 +29,12 @@ class RegisterScreen extends StatelessWidget {
   final lastnameController = TextEditingController();
   final numberController = TextEditingController();
   final passwordController = TextEditingController();
-  final retypePasswprdController = TextEditingController();
+  final retypePasswordController = TextEditingController();
   final bioController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    final providerBlocRegister = Provider.of<RegisterBloc>(context);
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Padding(
@@ -49,13 +47,19 @@ class RegisterScreen extends StatelessWidget {
                 child: Container(color: Colors.transparent, child: first())),
             Flexible(
                 flex: 4,
-                child: Container(color: Colors.transparent, child: second())),
+                child: Container(
+                    color: Colors.transparent,
+                    child: second(providerBlocRegister))),
             Flexible(
                 flex: 12,
-                child: Container(color: Colors.transparent, child: third())),
+                child: Container(
+                    color: Colors.transparent,
+                    child: third(providerBlocRegister))),
             Flexible(
                 flex: 4,
-                child: Container(color: Colors.transparent, child: fourth())),
+                child: Container(
+                    color: Colors.transparent,
+                    child: fourth(providerBlocRegister))),
           ],
         ),
       ),
@@ -87,7 +91,7 @@ class RegisterScreen extends StatelessWidget {
     );
   }
 
-  Widget second() {
+  Widget second(providerBlocRegister) {
     return Padding(
       padding: const EdgeInsets.only(top: 10),
       child: Row(
@@ -116,11 +120,12 @@ class RegisterScreen extends StatelessWidget {
                     height: 20,
                     width: 20,
                   ),
-                  second: BlocBuilder<RegisterBloc, List<bool>>(
-                    bloc: blocRegisterFields,
+                  second: BlocBuilder<RegisterBloc, RegisterData>(
+                    bloc: providerBlocRegister,
                     builder: (context, state) {
+                      state as RegisterFieldsInfo;
                       log("salom");
-                      return state[0]
+                      return state.firstname
                           ? const CancelIcon()
                           : const SizedBox();
                     },
@@ -160,7 +165,7 @@ class RegisterScreen extends StatelessWidget {
     );
   }
 
-  Widget third() {
+  Widget third(providerBlocRegister) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -177,10 +182,12 @@ class RegisterScreen extends StatelessWidget {
         ),
         TextFieldRed(
           suffix: const StartLocationTextField(),
-          second: BlocBuilder<RegisterBloc, List<bool>>(
-            bloc: blocRegisterFields,
+          second: BlocBuilder<RegisterBloc, RegisterData>(
+            bloc: providerBlocRegister,
             builder: (context, state) {
-              return state[1] ? const CancelIcon() : const SizedBox();
+              state as RegisterFieldsInfo;
+
+              return state.phone ? const CancelIcon() : const SizedBox();
             },
           ),
           textEditingController: numberController,
@@ -210,10 +217,12 @@ class RegisterScreen extends StatelessWidget {
             height: 20,
             width: 20,
           ),
-          second: BlocBuilder<RegisterBloc, List<bool>>(
-            bloc: blocRegisterFields,
+          second: BlocBuilder<RegisterBloc, RegisterData>(
+            bloc: providerBlocRegister,
             builder: (context, state) {
-              return state[2] ? const CancelIcon() : const SizedBox();
+              state as RegisterFieldsInfo;
+
+              return state.password ? const CancelIcon() : const SizedBox();
             },
           ),
           textEditingController: passwordController,
@@ -243,13 +252,17 @@ class RegisterScreen extends StatelessWidget {
             height: 20,
             width: 20,
           ),
-          second: BlocBuilder<RegisterBloc, List<bool>>(
-            bloc: blocRegisterFields,
+          second: BlocBuilder<RegisterBloc, RegisterData>(
+            bloc: providerBlocRegister,
             builder: (context, state) {
-              return state[3] ? const CancelIcon() : const SizedBox();
+              state as RegisterFieldsInfo;
+
+              return state.retypePassword
+                  ? const CancelIcon()
+                  : const SizedBox();
             },
           ),
-          textEditingController: retypePasswprdController,
+          textEditingController: retypePasswordController,
         ),
         Padding(
           padding: const EdgeInsets.only(top: 16),
@@ -308,7 +321,7 @@ Terms and condition""",
     );
   }
 
-  Widget fourth() {
+  Widget fourth(RegisterBloc providerRegisterBloc) {
     return Column(
       children: [
         Padding(
@@ -324,15 +337,13 @@ Terms and condition""",
                 textColor: Constants.redButtonTextColor,
                 buttonText: "REGISTER",
                 onTap: () {
-                  RegisterButtonPressed onButtonPressed = RegisterButtonPressed(
-                      firstname: firstnameController.text,
-                      lastname: lastnameController.text,
-                      phonenumber: numberController.text,
-                      password: passwordController.text,
-                      retypePassword: retypePasswprdController.text,
-                      bio: bioController.text);
-
-                  blocRegisterFields.add(onButtonPressed);
+                  providerRegisterBloc.add(RegisterButtonPressed(
+                      firstnameController.text,
+                      lastnameController.text,
+                      numberController.text,
+                      passwordController.text,
+                      retypePasswordController.text,
+                      bioController.text));
                 },
               ),
             ],

@@ -1,4 +1,4 @@
-import 'package:flinger/classes/klas.dart';
+import 'package:flinger/controller/classes/klas.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 abstract class ButtonEvent {}

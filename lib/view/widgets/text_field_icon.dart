@@ -1,9 +1,5 @@
-import 'package:flinger/cubits/cubit_cancel_firstname.dart';
-import 'package:flinger/cubits/cubit_cancel_password.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
 class TextFieldIcon extends StatelessWidget {
   final bool isEmail;
