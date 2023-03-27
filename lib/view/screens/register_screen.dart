@@ -1,9 +1,12 @@
 import 'dart:developer';
-import 'package:flinger/controller/blocs/bloc_register_fields.dart';
+
 import 'package:flinger/controller/cubits/cubit_cancel_firstname.dart';
 import 'package:flinger/controller/cubits/cubit_cancel_number.dart';
 import 'package:flinger/controller/cubits/cubit_cancel_password.dart';
 import 'package:flinger/controller/cubits/cubit_change_check.dart';
+import 'package:flinger/controller/cubits/cubit_eye.dart';
+import 'package:flinger/controller/cubits/cubit_tap_register.dart';
+import 'package:flinger/controller/cubits/cubit_textFields.dart';
 import 'package:flinger/model/constants.dart';
 import 'package:flinger/view/widgets/cancel_icon.dart';
 import 'package:flinger/view/widgets/profile_widget.dart';
@@ -14,16 +17,21 @@ import 'package:flinger/view/widgets/text_field_red.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
 class RegisterScreen extends StatelessWidget {
   RegisterScreen({super.key});
 
   final cubitChangeCheck = CubitChangeCheck(false);
-
   final cubitCancelFirstname = CubitCancelFirstname(false);
   final cubitCancelNumber = CubitCancelNumber(false);
   final cubitCancelPassword = CubitCancelPassword(false);
+  final cubitEye = CubitEye(false);
+  final cubitEyeRet = CubitEyeRet(false);
+  final cubitFirstname = CubitFirstname(false);
+  final cubitPhone = CubitPhone(false);
+  final cubitPassword = CubitPassword(false);
+  final cubitRetPassword = CubitRetPassword(false);
+  final cubitTapRegister = CubitTapRegister();
 
   final firstnameController = TextEditingController();
   final lastnameController = TextEditingController();
@@ -34,7 +42,6 @@ class RegisterScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final providerBlocRegister = Provider.of<RegisterBloc>(context);
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Padding(
@@ -47,19 +54,13 @@ class RegisterScreen extends StatelessWidget {
                 child: Container(color: Colors.transparent, child: first())),
             Flexible(
                 flex: 4,
-                child: Container(
-                    color: Colors.transparent,
-                    child: second(providerBlocRegister))),
+                child: Container(color: Colors.transparent, child: second())),
             Flexible(
                 flex: 12,
-                child: Container(
-                    color: Colors.transparent,
-                    child: third(providerBlocRegister))),
+                child: Container(color: Colors.transparent, child: third())),
             Flexible(
                 flex: 4,
-                child: Container(
-                    color: Colors.transparent,
-                    child: fourth(providerBlocRegister))),
+                child: Container(color: Colors.transparent, child: fourth())),
           ],
         ),
       ),
@@ -91,7 +92,7 @@ class RegisterScreen extends StatelessWidget {
     );
   }
 
-  Widget second(providerBlocRegister) {
+  Widget second() {
     return Padding(
       padding: const EdgeInsets.only(top: 10),
       child: Row(
@@ -111,26 +112,33 @@ class RegisterScreen extends StatelessWidget {
                       fontSize: 14,
                       fontWeight: FontWeight.w500),
                 ),
-                TextFieldIcon(
-                  isEmail: false,
-                  isPassword: false,
-                  topPadding: 0,
-                  first: Image.asset(
-                    "assets/firstname.png",
-                    height: 20,
-                    width: 20,
-                  ),
-                  second: BlocBuilder<RegisterBloc, RegisterData>(
-                    bloc: providerBlocRegister,
-                    builder: (context, state) {
-                      state as RegisterFieldsInfo;
-                      log("salom");
-                      return state.firstname
-                          ? const CancelIcon()
-                          : const SizedBox();
-                    },
-                  ),
-                  textEditingController: firstnameController,
+                BlocBuilder<CubitTapRegister, bool>(
+                  bloc: cubitTapRegister,
+                  builder: (context, state) {
+                    log(state.toString());
+                    return TextFieldIcon(
+                      isEmail: false,
+                      onChanged: (p0) {
+                        if (state) cubitFirstname.emit(p0.isEmpty);
+                      },
+                      isPassword: false,
+                      topPadding: 0,
+                      first: Image.asset(
+                        "assets/firstname.png",
+                        height: 20,
+                        width: 20,
+                      ),
+                      second: BlocBuilder<CubitFirstname, bool>(
+                        bloc: cubitFirstname,
+                        builder: (context, state) {
+                          return state == true
+                              ? const CancelIcon()
+                              : const SizedBox();
+                        },
+                      ),
+                      textEditingController: firstnameController,
+                    );
+                  },
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 10),
@@ -165,7 +173,7 @@ class RegisterScreen extends StatelessWidget {
     );
   }
 
-  Widget third(providerBlocRegister) {
+  Widget third() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -180,17 +188,23 @@ class RegisterScreen extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
         ),
-        TextFieldRed(
-          suffix: const StartLocationTextField(),
-          second: BlocBuilder<RegisterBloc, RegisterData>(
-            bloc: providerBlocRegister,
-            builder: (context, state) {
-              state as RegisterFieldsInfo;
-
-              return state.phone ? const CancelIcon() : const SizedBox();
-            },
-          ),
-          textEditingController: numberController,
+        BlocBuilder<CubitTapRegister, bool>(
+          bloc: cubitTapRegister,
+          builder: (context, state) {
+            return TextFieldRed(
+              onChanged: (p0) {
+                if (state) cubitPhone.emit(p0.isEmpty);
+              },
+              suffix: const StartLocationTextField(),
+              second: BlocBuilder<CubitPhone, bool>(
+                bloc: cubitPhone,
+                builder: (context, state) {
+                  return state == true ? const CancelIcon() : const SizedBox();
+                },
+              ),
+              textEditingController: numberController,
+            );
+          },
         ),
         Padding(
           padding: const EdgeInsets.only(top: 16),
@@ -203,29 +217,48 @@ class RegisterScreen extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
         ),
-        TextFieldIcon(
-          first: Image.asset(
-            "assets/key.png",
-            height: 20,
-            width: 20,
-          ),
-          isEmail: false,
-          topPadding: 0,
-          isPassword: true,
-          third: Image.asset(
-            "assets/eye.png",
-            height: 20,
-            width: 20,
-          ),
-          second: BlocBuilder<RegisterBloc, RegisterData>(
-            bloc: providerBlocRegister,
-            builder: (context, state) {
-              state as RegisterFieldsInfo;
-
-              return state.password ? const CancelIcon() : const SizedBox();
-            },
-          ),
-          textEditingController: passwordController,
+        BlocBuilder<CubitTapRegister, bool>(
+          bloc: cubitTapRegister,
+          builder: (context, state) {
+            return BlocBuilder<CubitEye, bool>(
+                bloc: cubitEye,
+                builder: (context, snapshot) {
+                  return TextFieldIcon(
+                    first: Image.asset(
+                      "assets/key.png",
+                      height: 20,
+                      width: 20,
+                    ),
+                    onChanged: (p0) {
+                      if (state) cubitPassword.emit(p0.isEmpty);
+                    },
+                    isEmail: false,
+                    topPadding: 0,
+                    isPassword: snapshot == true ? false : true,
+                    third: GestureDetector(
+                      onTap: () {
+                        cubitEye.emit(!snapshot);
+                      },
+                      child: Image.asset(
+                        snapshot == true
+                            ? "assets/eye_hide.png"
+                            : "assets/eye.png",
+                        height: 20,
+                        width: 20,
+                      ),
+                    ),
+                    second: BlocBuilder<CubitPassword, bool>(
+                      bloc: cubitPassword,
+                      builder: (context, state) {
+                        return state == true
+                            ? const CancelIcon()
+                            : const SizedBox();
+                      },
+                    ),
+                    textEditingController: passwordController,
+                  );
+                });
+          },
         ),
         Padding(
           padding: const EdgeInsets.only(top: 16),
@@ -238,31 +271,50 @@ class RegisterScreen extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
         ),
-        TextFieldIcon(
-          first: Image.asset(
-            "assets/key.png",
-            height: 20,
-            width: 20,
-          ),
-          isEmail: false,
-          topPadding: 0,
-          isPassword: true,
-          third: Image.asset(
-            "assets/eye.png",
-            height: 20,
-            width: 20,
-          ),
-          second: BlocBuilder<RegisterBloc, RegisterData>(
-            bloc: providerBlocRegister,
-            builder: (context, state) {
-              state as RegisterFieldsInfo;
-
-              return state.retypePassword
-                  ? const CancelIcon()
-                  : const SizedBox();
-            },
-          ),
-          textEditingController: retypePasswordController,
+        BlocBuilder<CubitTapRegister, bool>(
+          bloc: cubitTapRegister,
+          builder: (context, state) {
+            return BlocBuilder<CubitEyeRet, bool>(
+                bloc: cubitEyeRet,
+                builder: (context, snapshot) {
+                  return TextFieldIcon(
+                    first: Image.asset(
+                      "assets/key.png",
+                      height: 20,
+                      width: 20,
+                    ),
+                    onChanged: (p0) {
+                      if (state)
+                        cubitRetPassword
+                            .emit(retypePasswordController.text.isEmpty);
+                    },
+                    isEmail: false,
+                    topPadding: 0,
+                    isPassword: snapshot ? false : true,
+                    third: GestureDetector(
+                      onTap: () {
+                        cubitEyeRet.emit(!snapshot);
+                      },
+                      child: Image.asset(
+                        snapshot == true
+                            ? "assets/eye_hide.png"
+                            : "assets/eye.png",
+                        height: 20,
+                        width: 20,
+                      ),
+                    ),
+                    second: BlocBuilder<CubitRetPassword, bool>(
+                      bloc: cubitRetPassword,
+                      builder: (context, state) {
+                        return state == true
+                            ? const CancelIcon()
+                            : const SizedBox();
+                      },
+                    ),
+                    textEditingController: retypePasswordController,
+                  );
+                });
+          },
         ),
         Padding(
           padding: const EdgeInsets.only(top: 16),
@@ -321,7 +373,7 @@ Terms and condition""",
     );
   }
 
-  Widget fourth(RegisterBloc providerRegisterBloc) {
+  Widget fourth() {
     return Column(
       children: [
         Padding(
@@ -337,13 +389,11 @@ Terms and condition""",
                 textColor: Constants.redButtonTextColor,
                 buttonText: "REGISTER",
                 onTap: () {
-                  providerRegisterBloc.add(RegisterButtonPressed(
-                      firstnameController.text,
-                      lastnameController.text,
-                      numberController.text,
-                      passwordController.text,
-                      retypePasswordController.text,
-                      bioController.text));
+                  cubitTapRegister.emit(true);
+                  cubitFirstname.emit(firstnameController.text.isEmpty);
+                  cubitPhone.emit(numberController.text.isEmpty);
+                  cubitPassword.emit(passwordController.text.isEmpty);
+                  cubitRetPassword.emit(retypePasswordController.text.isEmpty);
                 },
               ),
             ],

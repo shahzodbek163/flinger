@@ -6,12 +6,14 @@ class TextFieldRed extends StatefulWidget {
   final Widget suffix;
   final Widget second;
   final TextEditingController textEditingController;
+  final void Function(String)? onChanged;
 
   const TextFieldRed(
       {super.key,
       required this.suffix,
       this.second = const SizedBox(),
-      required this.textEditingController});
+      required this.textEditingController,
+      this.onChanged});
 
   @override
   State<TextFieldRed> createState() => _TextFieldRedState();
@@ -24,6 +26,7 @@ class _TextFieldRedState extends State<TextFieldRed> {
       children: [
         TextField(
           controller: widget.textEditingController,
+          onChanged: widget.onChanged,
           cursorColor: const Color(0xFFff0008),
           maxLength: 9,
           cursorHeight: 16,
