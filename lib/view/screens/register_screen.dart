@@ -240,11 +240,12 @@ class RegisterScreen extends StatelessWidget {
                         cubitEye.emit(!snapshot);
                       },
                       child: Image.asset(
+                        height: 20,
+                        width: 20,
                         snapshot == true
                             ? "assets/eye_hide.png"
                             : "assets/eye.png",
-                        height: 20,
-                        width: 20,
+
                       ),
                     ),
                     second: BlocBuilder<CubitPassword, bool>(

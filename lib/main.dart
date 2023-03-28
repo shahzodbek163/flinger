@@ -1,6 +1,5 @@
 import 'package:bloc/bloc.dart';
 import 'package:flinger/controller/bloc_observ/custom_bloc_observe.dart';
-import 'package:flinger/controller/blocs/blocA.dart';
 import 'package:flinger/controller/blocs/bloc_set_code.dart';
 import 'package:flinger/controller/blocs/image_picker_bloc.dart';
 import 'package:flinger/controller/classes/set_check.dart';
@@ -16,9 +15,6 @@ void main(List<String> args) async {
       ChangeNotifierProvider(create: (context) => SetCheck()),
       Provider<BlocSetCode>(create: (context) => BlocSetCode()),
       Provider<ImagePickerBloC>(create: (context) => ImagePickerBloC()),
-      Provider<SimpleButtonBloC>(
-        create: (context) => SimpleButtonBloC(),
-      ),
     ],
     child: MaterialApp(
       home: RegisterScreen(),
